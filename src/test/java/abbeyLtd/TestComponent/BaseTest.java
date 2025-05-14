@@ -5,13 +5,16 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -38,7 +41,7 @@ public class BaseTest {
         String browserName = System.getProperty("browser")!=null ? System.getProperty("browser") : prop.getProperty("browser");
         //prop.getProperty("browser");
 
-        if (browserName.equals("chrome")) {
+        if (browserName.contains("chrome")) {
 
             WebDriverManager.chromedriver().setup();
             // Configure ChromeOptions to disable password manager and leak detection
@@ -48,15 +51,34 @@ public class BaseTest {
             prefs.put("profile.password_manager_enabled", false);
             prefs.put("profile.password_manager_leak_detection", false);
             options.setExperimentalOption("prefs", prefs);
+
+            if(browserName.contains("headless")){
+                options.addArguments("--headless");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--no-sandbox");
+            }
             driver = new ChromeDriver(options); // Pass ChromeOptions to ChromeDriver
+            driver.manage().window().setSize(new Dimension(1440, 900));
         }
-        else if (browserName.equals("firefox")) {
+
+        else if (browserName.contains("firefox")) {
             WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+            FirefoxOptions options = new FirefoxOptions();
+            if(browserName.contains("--headless")){
+                options.addArguments("headless");
+            }
+            driver = new FirefoxDriver(options); // Pass ChromeOptions to ChromeDriver
+            driver.manage().window().setSize(new Dimension(1440, 900));
         }
-        else if (browserName.equals("IE")) {
+
+        else if (browserName.contains("edge")) {
             WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
+            EdgeOptions options = new EdgeOptions();
+            if(browserName.contains("headless")){
+                options.addArguments("--headless=new");
+            }
+            driver = new EdgeDriver(options);
+            driver.manage().window().setSize(new Dimension(1440, 900));
         }
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

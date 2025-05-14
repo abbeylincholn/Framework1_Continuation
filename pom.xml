@@ -125,24 +125,25 @@
     </profile>
 
     <profile>
-      <id>ErrorValidation</id>
-        <build>
-          <pluginManagement>
-            <plugins>
-              <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.3</version>
-                <configuration>
-                  <suiteXmlFiles>
-                    <suiteXmlFile>testSuites/ErrorValidations.xml</suiteXmlFile>
-                  </suiteXmlFiles>
-                </configuration>
-              </plugin>
-            </plugins>
-          </pluginManagement>
-        </build>
+      <id>Error</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>3.5.3</version>
+              <configuration>
+                <suiteXmlFiles>
+                  <suiteXmlFile>testSuites/Error.xml</suiteXmlFile>
+                </suiteXmlFiles>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
     </profile>
+
   </profiles>
 
   <build>
