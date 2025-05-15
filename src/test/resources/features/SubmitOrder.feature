@@ -4,7 +4,7 @@
     Background:
       Given I am on Ecommance website
 
-  @tag
+  @Smoke
   Scenario Outline: Positive Test of Submitting the order
     Given logged in with username <username> and password <password>
     When I add product <productName> to cart

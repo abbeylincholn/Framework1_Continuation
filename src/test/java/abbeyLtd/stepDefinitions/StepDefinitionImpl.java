@@ -52,4 +52,13 @@ public class StepDefinitionImpl extends BaseTest {
         Assert.assertTrue(confirmMessage.equalsIgnoreCase(message));
         driver.close();
     }
+    @Then ("{string} message is displayed")
+    public void loginErrorValidation(String message) throws InterruptedException, IOException {
+        Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
+        driver.close();
+    }
+
+
 }
+
+
