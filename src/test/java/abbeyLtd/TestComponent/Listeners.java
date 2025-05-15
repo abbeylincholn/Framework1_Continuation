@@ -20,7 +20,7 @@ public class Listeners extends BaseTest implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         test = extent.createTest(result.getMethod().getMethodName());
-        extentTest.set(test);  // set unique thread id(ErrorValidationsTest)->test  // thread safety
+        extentTest.set(test);  // set unique thread id(ErrorValidationsTest)->test  // thread safety, like the thread overriding that occurred reporting.
     }
 
     @Override

@@ -31,7 +31,7 @@ public class SubmitOrderTest extends BaseTest {
         ProductCatalogue productCatalogue = landingPage.loginApplication(input.get("username"), input.get("password"));
         List<WebElement> productsList = productCatalogue.getProductList();
         productCatalogue.addProductToCart(input.get("productName"));
-        CartPage cartPage = productCatalogue.goToCardPage();
+        CartPage cartPage = productCatalogue.gotoCartPage();
 
         Boolean match = cartPage.verifyProductDisplay(input.get("productName"));
         Assert.assertTrue(match);

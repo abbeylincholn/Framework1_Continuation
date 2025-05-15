@@ -91,7 +91,7 @@ public class BaseTest {
         String jsonContent = FileUtils.readFileToString( new File(filePath), StandardCharsets.UTF_8);
 
         // convert string to Hashmap (needed jackson databind dependency)
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();  // jackson read json
         List<HashMap<String, String>> data = mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>() {
         });
 

@@ -54,7 +54,7 @@ public class AbstractComponent {
         Thread.sleep(1000);
     }
 
-    public CartPage goToCardPage() {
+    public CartPage gotoCartPage() {
         cartHeader.click();
         CartPage cartPage = new CartPage(driver);
         return cartPage;

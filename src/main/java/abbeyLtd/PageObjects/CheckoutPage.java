@@ -9,21 +9,23 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CheckoutPage extends AbstractComponent {
+    // Encapsulation is it mainly hiding the implementation details of your class from another class.
+    // keeping fields private and actions public is a form of encapsulationand.
 
     WebDriver driver;
 
 
 
     @FindBy(css = "[placeholder='Select Country']")
-    WebElement country;
+    private WebElement country;
 
     @FindBy(css = ".ta-item:last-child")
-    WebElement selectCountry;
+    private WebElement selectCountry;
 
     @FindBy(css = ".btnn.action__submit")
-    WebElement submitBtn;
+    private WebElement submitBtn;
 
-    By results = By.cssSelector(".ta-results");
+    private By results = By.cssSelector(".ta-results");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
